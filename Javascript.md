@@ -9,7 +9,6 @@ This file describes general JS guidelines. See files with specific library names
             var a = 1;  // does not pollute global environment
             console.log('hello!'); // will run
         }());
-        
         // NOT THIS
         var a = 1;  // anyone accidentally use 'a' as a variable name will get a surprise
         console.log('hello!'); // will run
