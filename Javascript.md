@@ -13,4 +13,4 @@ This file describes general JS guidelines. See files with specific library names
         
         // NOT THIS
         var a = 1;  // anyone accidentally use 'a' as a variable name will get a surprise
-        console.log('hello!'); // will run
+        console.log('hello!'); // equivalent to above
