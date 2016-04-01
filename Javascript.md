@@ -14,3 +14,14 @@ This file describes general JS guidelines. See files with specific library names
         // NOT THIS
         var a = 1;  // anyone accidentally use 'a' as a variable name will get a surprise
         console.log('hello!'); // equivalent to above
+3. Use a single global variable to expose shared code (modules), instead of multiple global functions. Global functions may collide, and have different meanings based on context.
+
+        // DO THIS
+        var g = {
+                getHostName: function() {...},
+                getPath: function() {...}
+        }
+        
+        // NOT THIS
+        function getHostName() {...}
+        function getPath() {...}
