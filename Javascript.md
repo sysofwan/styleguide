@@ -88,7 +88,19 @@ Style
  
 Patterns
 ---------------
-1. Use a single global variable to expose shared code (modules), instead of multiple global functions. Global functions may collide, and have different meanings based on context.
+1. Use short-circuiting to give default values to function parameters
+
+    ```JavaScript
+    var foo = function(a, b) {
+        a = a || 1;
+        b = b || 2;
+        console.log('a:' + a ' b:' + b);
+    };
+    foo(); // prints a:1 b:2
+    foo(2); // prints a:2 b:2
+    foo(3, 10) // prints a:3 b:10
+    ```
+2. Use a single global variable to expose shared code (modules), instead of multiple global functions. Global functions may collide, and have different meanings based on context.
 
     ```JavaScript
     // DO THIS
@@ -102,7 +114,7 @@ Patterns
     function getPath() {...}
     ```
 
-2. Closures are functions that returns functions (or objects with functions). Use it for maintaining private access.
+3. Closures are functions that returns functions (or objects with functions). Use it for maintaining private access.
 
     ```JavaScript
     // id creator creates unique IDs. Once ID is created, it will not return the same ID again
@@ -141,11 +153,12 @@ Patterns
     id1 = 0; // breaks ID invariant, all code depending on id1 will break
     ```
         
-3. Use closures and self-invoking functions to add private variables/functions to module/singeletons. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
+4. Use closures and self-invoking functions to add private variables/functions to module/singeletons. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
 
     ```JavaScript        
     // DO THIS
-    var g = (function() { // g can be a module (group of functions with similar purpose - i.e for string manipulation) or singleton
+    // g can be a module (group of functions with similar purpose - i.e for string manipulation) or singleton
+    var g = (function() {
         var privateFunc = function() {...};
         var privateVar = 1;
 
@@ -164,4 +177,62 @@ Patterns
         privateFunc();
         privateVar = 2;
     }
+    ```
+
+5. Prefer creating objects using closures over constructor functions for simple objects with no inheritance. This may be debatable, but I find confusions/bugs from the `this` keyword in constructor functions, and the private members available in closures to be a good reason to prefer closures.
+
+    ```JavaScript
+    var useId = function(idFunc) {
+        var id = idFunc();
+        ...
+    };
+    // PREFER THIS
+    // This is an object for ID generation (again)
+    var createIDmaker = function(startId) {
+        startId = startId || 1; // startId is a private variable
+        var currentId = startId;
+        var getNext = function() { // private function
+            return ++currentId;
+        };
+        return {
+            getNext: getNext,
+            reset: function() {
+                currentId = startId;
+            }
+        };
+    };
+    
+    var idMaker = createIDmaker(5);
+    var id1 = idMaker.getNext(); // id1 == 5
+    var id2 = idMaker.getNext(); // id2 == 6
+    idMaker.reset();
+    var id3 = idMaker.getNext(); // id3 == 5
+    useId(idMaker.getNext); // this works
+    
+    // OVER THIS
+    // make sure constructor functions start with a capital. 
+    // Calling this without the "new" keyword will pollute the global scope
+    var IDMaker = function(startId) {
+        this.startId = startId || 0;
+        this.currentId = startId;
+    };
+    IDMaker.prototype.getNext = function() {
+        return ++this.currentId;
+    };
+    IDMaker.prototype.reset = function() {
+        this.currentId = this.startId;
+    };
+    // everything is the same as above
+    var idMaker = new IDMaker(5);
+    var id1 = idMaker.getNext(); // id1 == 5
+    var id2 = idMaker.getNext(); // id2 == 6
+    idMaker.reset();
+    var id3 = idMaker.getNext(); // id3 == 5
+    
+    // But, now I can change private members
+    idMaker.currentId = 0;
+    var id4 = idMaker.getNext() // id4 == 0 (oops!)
+    // and passing functions as variables no longer works
+    // error! currentId is undefined (when we pass getNext as a function, the "this" value changes to the global context)
+    useId(idMaker.getNext); 
     ```
