@@ -28,8 +28,14 @@ Use comments sparingly. Code should be self documentating with good function and
 
 Do not comment out unused code, delete it, even if you think you may need it in the future. You should be using version control (don't read this style guide if you are not), so it should be easy to get back to you old code. Commented out code tends to accumulate, be outdated, and ends up as nothing but a distraction.
 
+Performance
+----------------
+Clean code is more important than high performance code. Clean code can always be optimized later after profiling. Do not think too hard about performance, while writing convoluted code in the process. The code may not even be the bottleneck of the program. Write clean code first, profile and optimize later.
+
 Object-oriented design
 ---------------------------
 Encapsulate ideas in objects (data and operations on the data/member variables and member functions). Put strict restrictions on how other code (user code) operate on the object (private/public access). This will help prevent invariants (what you assume about state of the object) from being broken by other code. DO NOT put getters and setters for all data members. This breaks encapsulation. Spend time to think about the object design, requirements and how it may change in the future.
+
+When designing classes, think ahead about how features will be added/changed in the project. Adding a feature should require adding code, not modifying it. Adding a feature should not break any other components of the project
 
 Decouple interface from implementation. This will allow easy testing, mocking, and changing implementation (statically or dynamically) without change in user code. Doing this require more effort in statically typed languages than dynamically typed (look at specific language guide). 
