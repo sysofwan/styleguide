@@ -233,6 +233,5 @@ Patterns
     idMaker.currentId = 0;
     var id4 = idMaker.getNext() // id4 == 0 (oops!)
     // and passing functions as variables no longer works
-    // error! currentId is undefined (when we pass getNext as a function, the "this" value changes to the global context)
-    useId(idMaker.getNext); 
+    useId(idMaker.getNext); // error! currentId is undefined (when we pass getNext as a function, the "this" value changes to the global context)
     ```
