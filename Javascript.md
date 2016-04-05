@@ -27,6 +27,7 @@ This file describes general JS guidelines. See files with specific library names
         function getPath() {...}
         
 4. Use closures and self-invoking functions to add private variables/functions in modules. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
+        
         // DO THIS
         var g = (function() {
                 var privateFunc = function() {...};
