@@ -25,3 +25,25 @@ This file describes general JS guidelines. See files with specific library names
         // NOT THIS
         function getHostName() {...}
         function getPath() {...}
+        
+4. Use closures and self-invoking functions to add private variables/functions in modules. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
+        // DO THIS
+        var g = (function() {
+                var privateFunc = function() {...};
+                var privateVar = 1;
+                
+                return {
+                        publicFunc: function() {
+                                privateFunc();
+                                privateVar = 2;
+                        };
+                }
+        }());
+
+        // NOT THIS
+        function privateFunc() {...} // any code in the whole web page can use this function
+        var privateVar = 1;          // and change this variable. How are you going to debug?
+        function publicFunc() {
+                privateFunc();
+                privateVar = 2;
+        }
