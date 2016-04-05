@@ -14,7 +14,11 @@ Style
 
 2. Always put semi-colons at the end of a statement. Not putting semi-colons may appear to work, but will result in very hard to find bugs. Use a linter to check for this.
 
-3. Curly braces should be place on the right of a statement, not on a new line by itself (I know that this is debatable is most languages, but not for Javascript!).
+3. Always use `var` to declare a variable. Not using it wil work (surprise!), but the variable will become a global (what?).
+
+4. Put `use strict;` at the beginning of a JS file or a script tag. The enables "strict mode" which will throw errors and tell you about problems that will usually fail silently. See [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode]) for more information.
+
+5. Curly braces should be place on the right of a statement, not on a new line by itself (I know that this is debatable is most languages, but not for Javascript!).
 
     ```JavaScript
     // DO THIS
@@ -37,9 +41,9 @@ Style
     a = foo().bar; // a != 'bar' (a === undefined)
     ```
 
-4. Use `===` instead of `==` and `!==` instead of `!=` for comparison. Javascript's `==` and `!=` is not type safe and have some weird [behavior](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+6. Use `===` instead of `==` and `!==` instead of `!=` for comparison. Javascript's `==` and `!=` is not type safe and have some weird [behavior](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 
-5. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope).
+7. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope).
         
     ```JavaScript
     // in a function, DO THIS (not outside, see above)
@@ -54,7 +58,7 @@ Style
     foo();
     ```
 
-6. Javascript is function scoped (not block scoped like other C-style languages). All variable declarations will be hoisted to the top of a function.
+8. Javascript is function scoped (not block scoped like other C-style languages). All variable declarations will be hoisted to the top of a function.
 
     ```Javascript
     if (true) {
@@ -72,7 +76,7 @@ Style
     console.log(i); // undefined, i is only in the function
     ```
 
-7. Use self-invoking functions to avoid global variables/functions
+9. Use self-invoking functions to avoid global variables/functions
 
     ```JavaScript
     // DO THIS
