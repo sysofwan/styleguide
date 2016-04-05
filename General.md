@@ -3,7 +3,7 @@ General style guide
 
 This is a general guide that applies to most (if not all) programming languages.
 
-1. Care about your code style. This is the real world, and not a class project. You/other people will read your code, debug it, modify it. The code may still be in use for the next 10+ years. Help yourself/other programmers understand what you are doing. How many prograns are abandoned/rewritten because no one can understand/debug/modify old code.
+1. Care about your code style. This is the real world, and not a class project. You/other people will read your code, debug it, modify it. The code may still be in use for the next 10+ years. Help yourself/other programmers understand what you are doing. How many programs are abandoned/rewritten because no one can understand/debug/modify old code.
 
 2. If the problem you are facing seems common (i.e. validating email address, string manipulation, searching arrays, etc.) 
 there is a library for it. Find it, do not reivent the wheel.
