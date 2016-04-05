@@ -4,9 +4,36 @@ This file describes general Javascript guidelines. See files with specific libra
 
 1. Javascript projects are becoming increasingly bigger and more complex. Do not think that since JS looks famaliar, you do not have to take some time to learn it. Do not treat JS like Java/C++ without classes. Care about code design, object design, encapsulation, modularization when coding in JS. This guide explains briefly how to get these properties in JS. Pick up a book (highly recommend Javascript the Good Parts) for more in depth explaination.
 
-2. Everything outside a function in Javascript is global. Do not declare any function/variables outside a function.
+2. Everything outside a function in Javascript is global. Do not declare any function/variables outside a function. To avoid redundancy, some of the examples given below are not inside functions. Assume that it is.
 
-3. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope).
+3. Always put semi-colons at the end of a statement. Not putting semi-colons may appear to work, but will result in very hard to find bugs. Use a linter to check for this.
+
+4. Curly braces should be place on the right of a statement, not on a new line by itself (I know that this is debatable is most languages, but not for Javascript!).
+
+    ```JavaScript
+    // DO THIS
+    var foo = function() {
+        return {
+            bar: 'bar'
+        };
+    }
+    
+    a = foo().bar; // a == 'bar'
+    
+    // NOT THIS
+    var foo = function()
+    {
+        return
+        {
+            bar: 'bar'
+        };
+    };
+    a = foo().bar; // a != 'bar' (a === undefined)
+    ```
+
+5. Use `===` instead of `==` and `!===` instead of `!=` for comparison. Javascript's `==` and `!=` is not type safe and have some weird [behavior](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+
+6. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope).
         
     ```JavaScript
     // in a function, DO THIS (not outside, see above)
@@ -21,7 +48,7 @@ This file describes general Javascript guidelines. See files with specific libra
     foo();
     ```
 
-4. Use self-invoking functions to avoid global code
+7. Use self-invoking functions to avoid global code
 
     ```JavaScript
     // DO THIS
@@ -35,7 +62,7 @@ This file describes general Javascript guidelines. See files with specific libra
     console.log('hello!'); // equivalent to above
     ```
     
-5. Use a single global variable to expose shared code (modules), instead of multiple global functions. Global functions may collide, and have different meanings based on context.
+8. Use a single global variable to expose shared code (modules), instead of multiple global functions. Global functions may collide, and have different meanings based on context.
 
     ```JavaScript
     // DO THIS
@@ -49,7 +76,7 @@ This file describes general Javascript guidelines. See files with specific libra
     function getPath() {...}
     ```
 
-6. Closures are functions that returns functions (or objects with functions). Use it for maintaining private access.
+9. Closures are functions that returns functions (or objects with functions). Use it for maintaining private access.
 
     ```JavaScript
     // id creator creates unique IDs. Once ID is created, it will not return the same ID again
@@ -65,7 +92,7 @@ This file describes general Javascript guidelines. See files with specific libra
     var a = creator1(); // a == 1
     var b = creator1(); // b == 2
     var creator2 = constructIDcreator(); // we can construct multiple ID creator functions
-    var c = counter2() // c == 1
+    var c = creator2() // c == 1
     
     // NOT THIS
     // there is no longer private access, no longer any code reuse
@@ -88,11 +115,11 @@ This file describes general Javascript guidelines. See files with specific libra
     id1 = 0; // breaks ID invariant, all code depending on id1 will break
     ```
         
-7. Use closures and self-invoking functions to add private variables/functions to module/singeletons. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
+10. Use closures and self-invoking functions to add private variables/functions to module/singeletons. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
 
     ```JavaScript        
     // DO THIS
-    var g = (function() {
+    var g = (function() { // g can be a module (group of functions with similar purpose - i.e for string manipulation) or singleton
         var privateFunc = function() {...};
         var privateVar = 1;
 
