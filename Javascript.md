@@ -6,7 +6,7 @@ This file describes general Javascript guidelines. See files with specific libra
 
 2. Everything outside a function in Javascript is global. Do not declare any function/variables outside a function.
 
-3. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope.
+3. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope).
 
         // in a function, DO THIS (not outside, see above)
         var foo = function() {...};
