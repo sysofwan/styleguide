@@ -31,7 +31,7 @@ This file describes general Javascript guidelines. See files with specific libra
     a = foo().bar; // a != 'bar' (a === undefined)
     ```
 
-5. Use `===` instead of `==` and `!===` instead of `!=` for comparison. Javascript's `==` and `!=` is not type safe and have some weird [behavior](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+5. Use `===` instead of `==` and `!==` instead of `!=` for comparison. Javascript's `==` and `!=` is not type safe and have some weird [behavior](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 
 6. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope).
         
