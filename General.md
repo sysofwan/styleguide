@@ -7,6 +7,10 @@ Why style matters
 -------------------
 Care about your code style. This is the real world, and not a class project. You/other people will read your code, debug it, modify it. The code may still be in use for the next 10+ years. Help yourself/other programmers understand what you are doing. How many programs are abandoned/rewritten because no one can understand/debug/modify old code.
 
+Resources
+----------------
+A book/class is the best thing to teach yourself good coding practice. If there is an OOP course at your collage, take it. [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612) is the main reference for software design patterns. [Refactoring: Improving the Design of Existing Code](http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672) describes how to detect bad code (code smells) and how to refactor it. [Clean Code: A Handbook of Agile Software Craftsmanship](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) explains how to write clean code through examples and case studies.
+
 Libraries
 ----------------
 If the problem you are facing seems common (i.e. validating email address, string manipulation, searching arrays, etc.) 
