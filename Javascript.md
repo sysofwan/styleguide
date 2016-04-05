@@ -48,8 +48,47 @@ This file describes general Javascript guidelines. See files with specific libra
     function getHostName() {...}
     function getPath() {...}
     ```
+
+6. Closures are functions that returns functions (or objects with functions). Use it for maintaining private access.
+
+    ```JavaScript
+    // id creator creates unique IDs. Once ID is created, it will not return the same ID again
+    // DO THIS
+    var constructIDcreator = function() { // this function will create an ID creator
+        var count = 0; // private member, cannot be changed except by returned function
+        return function() {
+            count += 1;
+            return count;
+        }
+    };
+    var creator1 = constructIDcreator();
+    var a = creator1(); // a == 1
+    var b = creator1(); // b == 2
+    var creator2 = constructIDcreator(); // we can construct multiple ID creator functions
+    var c = counter2() // c == 1
+    
+    // NOT THIS
+    // there is no longer private access, no longer any code reuse
+    var id1 = 0;
+    var id2 = 0;
+    var getId1 = function() {
+        id1 += 1;
+        return id1;
+    };
+    var getId2 = function() {
+        id2 += 1;
+        return id2;
+    };
+    var a = getId1(); // a == 1
+    var b = getId1(); // b == 2
+    var c = getId2(); // c == 1
+    
+    ...
+    // somewhere later in code, some programmer does not realize that id1 should only be accessed by getId1
+    id1 = 0; // breaks ID invariant, all code depending on id1 will break
+    ```
         
-6. Use closures and self-invoking functions to add private variables/functions in modules. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
+7. Use closures and self-invoking functions to add private variables/functions to module/singeletons. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
 
     ```JavaScript        
     // DO THIS
