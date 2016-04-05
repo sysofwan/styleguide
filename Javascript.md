@@ -194,6 +194,8 @@ Patterns
         var getNext = function() { // private function
             return ++currentId;
         };
+        
+        // public members and functions
         return {
             getNext: getNext,
             reset: function() {
@@ -234,4 +236,35 @@ Patterns
     var id4 = idMaker.getNext() // id4 == 0 (oops!)
     // and passing functions as variables no longer works
     useId(idMaker.getNext); // error! currentId is undefined (when we pass getNext as a function, the "this" value changes to the global context)
+    ```
+
+6. Javascript is a functional language. Don't be afraid to pass functions as arguments to other functions. This can be used to create more generic objects/functions, and more decoupled code.
+
+    ```JavaScript
+    // using our previous IDmaker example
+    // we now have a nextIdFunc, an optional function that accepts a number (currentId), and returns a number (nextId).
+    // the nextIdFunc can compute the next id any way - adding, hashing, etc (decoupling)
+    var createIDmaker = function(startId, nextIdFunc) {
+        startId = startId || 1;
+        var currentId = startId;
+        // nextIdFunc is optional, if undefined, just use our old algorithm (adding one) for computing next id.
+        nextIdFunc = nextIdFunc || function(id) { return id + 1; };
+        
+        var getNext = function() { // private function
+            var oldId = currentId;
+            currentId = nextIdFunc(currentId);
+            return oldId;
+        };
+        return {
+            getNext: getNext,
+            reset: function() {
+                currentId = startId;
+            }
+        };
+    };
+    
+    var add5IdMaker = createIDmaker(0, function(id) { return id + 5; });
+    var id1 = add5IdMaker.getNext(); // id1 == 0
+    var id2 = add5IdMaker.getNext(); // id2 == 5
+    ...
     ```
