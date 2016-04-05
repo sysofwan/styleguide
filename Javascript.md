@@ -8,6 +8,12 @@ Javascript is the language of the web, one of the most portable language, runnin
 
 Javascript projects are becoming increasingly bigger and more complex. Do not think that since JS looks famaliar, you do not have to take some time to learn it. Do not treat JS like Java/C++ without classes. Care about code design, object design, encapsulation, modularization when coding in JS. This guide explains briefly how to get these properties in JS. Pick up a book (highly recommend Javascript the Good Parts) for more in depth explaination.
 
+Resources
+--------------
+W3Schools often show up at the top when Googling on Javascript. [DO NOT USE IT](http://www.w3fools.com/). For reference and documentation use [MDN](https://developer.mozilla.org/en-US/) instead (it often shows up 2nd or 3rd in Google search). Some website (StackOveflow, blogs, etc.) have examples with very bad JS styles. Think before trusting these sources. Educate yourself.
+
+For more in depth JS, pick up a book. I recommend [JavaScript the Good Parts](http://bdcampbell.net/javascript/book/javascript_the_good_parts.pdf). If you prefer a textbook, [JavaScript: The Definitive Guide](http://www.amazon.com/JavaScript-Definitive-Guide-Activate-Guides-ebook/dp/B004XQX4K0) is good. [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS) is also good. I personally only read JavaScript the Good Parts.
+
 Style
 -------------
 1. Everything outside a function in Javascript is global. Do not declare any function/variables outside a function. To avoid redundancy, some of the examples given below are not inside functions. Assume that it is.
