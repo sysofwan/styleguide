@@ -48,7 +48,25 @@ This file describes general Javascript guidelines. See files with specific libra
     foo();
     ```
 
-7. Use self-invoking functions to avoid global code
+7. Javascript is function scoped (not block scoped like other C-style languages). All variable declarations will be hoisted to the top of a function.
+
+    ```Javascript
+    if (true) {
+        var a = 1;
+    }
+    console.log(a); // prints 1, since a is not block scoped
+    (function() { // to introduce a scope, create a function
+        var b = 1;
+        for (var i = 0; i < 3; i++} {
+            // do nothing
+        }
+        console.log(i); // prints 3, i is not block scoped
+    }());
+    console.log(b); // undefined, b is only in the function
+    console.log(i); // undefined, i is only in the function
+    ```
+
+7. Use self-invoking functions to avoid global variables/functions
 
     ```JavaScript
     // DO THIS
