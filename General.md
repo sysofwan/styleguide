@@ -16,7 +16,7 @@ Programming language
 ----------------------
 Work with a language/framework, not against it. Learn the language you are using, it's styles, it's nuances. Do not assume that all languages are the same. Different languages are created with different motivation, to solve different problems. A style acceptable in one language may not be in another language.
 
-Never use a language feauture just for the sake of using it. Use it because it simplifies code, and because it is the right feature for the job. Simple code that uses simple language features is better than complicated code with complicated language features.
+Never use a language feature just for the sake of using it. Use it because it simplifies code, and because it is the right feature for the job. Simple code that uses simple language features is better than complicated code with complicated language features.
 
 Functions
 --------------
