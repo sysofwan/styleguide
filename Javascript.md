@@ -2,13 +2,19 @@ Javascript Style Guide
 =============================
 This file describes general Javascript guidelines. See files with specific library names for library guidelines.
 
-1. Javascript projects are becoming increasingly bigger and more complex. Do not think that since JS looks famaliar, you do not have to take some time to learn it. Do not treat JS like Java/C++ without classes. Care about code design, object design, encapsulation, modularization when coding in JS. This guide explains briefly how to get these properties in JS. Pick up a book (highly recommend Javascript the Good Parts) for more in depth explaination.
+Why Javascript
+----------------
+Javascript is the language of the web, one of the most portable language, running on almost all machines. Applications written in JS can be used on almost all machines with a browser. Javascript was designed to be simple and beginner friendly. It was also designed in a hurry, making it have some very bad design choices.
 
-2. Everything outside a function in Javascript is global. Do not declare any function/variables outside a function. To avoid redundancy, some of the examples given below are not inside functions. Assume that it is.
+Javascript projects are becoming increasingly bigger and more complex. Do not think that since JS looks famaliar, you do not have to take some time to learn it. Do not treat JS like Java/C++ without classes. Care about code design, object design, encapsulation, modularization when coding in JS. This guide explains briefly how to get these properties in JS. Pick up a book (highly recommend Javascript the Good Parts) for more in depth explaination.
 
-3. Always put semi-colons at the end of a statement. Not putting semi-colons may appear to work, but will result in very hard to find bugs. Use a linter to check for this.
+Style
+-------------
+1. Everything outside a function in Javascript is global. Do not declare any function/variables outside a function. To avoid redundancy, some of the examples given below are not inside functions. Assume that it is.
 
-4. Curly braces should be place on the right of a statement, not on a new line by itself (I know that this is debatable is most languages, but not for Javascript!).
+2. Always put semi-colons at the end of a statement. Not putting semi-colons may appear to work, but will result in very hard to find bugs. Use a linter to check for this.
+
+3. Curly braces should be place on the right of a statement, not on a new line by itself (I know that this is debatable is most languages, but not for Javascript!).
 
     ```JavaScript
     // DO THIS
@@ -31,9 +37,9 @@ This file describes general Javascript guidelines. See files with specific libra
     a = foo().bar; // a != 'bar' (a === undefined)
     ```
 
-5. Use `===` instead of `==` and `!==` instead of `!=` for comparison. Javascript's `==` and `!=` is not type safe and have some weird [behavior](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+4. Use `===` instead of `==` and `!==` instead of `!=` for comparison. Javascript's `==` and `!=` is not type safe and have some weird [behavior](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 
-6. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope).
+5. Functions are first class objects in JS (i.e. functions are variables). Treat it like variables to avoid confusion. Avoid the "function declaration" syntax since it blurs this fact, and it provides implicit (and confusing) function hoisting (the function is brought up in its scope).
         
     ```JavaScript
     // in a function, DO THIS (not outside, see above)
@@ -48,7 +54,7 @@ This file describes general Javascript guidelines. See files with specific libra
     foo();
     ```
 
-7. Javascript is function scoped (not block scoped like other C-style languages). All variable declarations will be hoisted to the top of a function.
+6. Javascript is function scoped (not block scoped like other C-style languages). All variable declarations will be hoisted to the top of a function.
 
     ```Javascript
     if (true) {
@@ -79,8 +85,10 @@ This file describes general Javascript guidelines. See files with specific libra
     var a = 1;  // anyone accidentally use 'a' as a variable name will get a surprise
     console.log('hello!'); // equivalent to above
     ```
-    
-8. Use a single global variable to expose shared code (modules), instead of multiple global functions. Global functions may collide, and have different meanings based on context.
+ 
+Patterns
+---------------
+1. Use a single global variable to expose shared code (modules), instead of multiple global functions. Global functions may collide, and have different meanings based on context.
 
     ```JavaScript
     // DO THIS
@@ -94,7 +102,7 @@ This file describes general Javascript guidelines. See files with specific libra
     function getPath() {...}
     ```
 
-9. Closures are functions that returns functions (or objects with functions). Use it for maintaining private access.
+2. Closures are functions that returns functions (or objects with functions). Use it for maintaining private access.
 
     ```JavaScript
     // id creator creates unique IDs. Once ID is created, it will not return the same ID again
@@ -133,7 +141,7 @@ This file describes general Javascript guidelines. See files with specific libra
     id1 = 0; // breaks ID invariant, all code depending on id1 will break
     ```
         
-10. Use closures and self-invoking functions to add private variables/functions to module/singeletons. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
+3. Use closures and self-invoking functions to add private variables/functions to module/singeletons. Remember, the more you keep stuff private, the better your encapsulation (the less you try to find which code is changing what).
 
     ```JavaScript        
     // DO THIS
