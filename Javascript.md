@@ -3,7 +3,9 @@ Javascript Style Guide
 This file describes general Javascript guidelines. See files with specific library names for library guidelines.
 
 1. Javascript projects are becoming increasingly bigger and more complex. Do not think that since JS looks famaliar, you do not have to take some time to learn it. Do not treat JS like Java without classes. Care about code design, object design, encapsulation, modularization when coding in JS. This guide explains briefly how to get these properties in JS. Pick up a book (highly recommend Javascript the Good Parts) for more in depth explaination.
+
 2. Everything outside a function in Javascript is global. Do not declare any function/variables outside a function.
+
 3. Use self-invoking functions to avoid global code
 
         // DO THIS
