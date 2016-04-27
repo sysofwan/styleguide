@@ -1,7 +1,7 @@
 JQuery Style Guide
 ====================
 
-This file is a style guide for the [JQuery](https://jquery.com/) framework (I prefer DOM manipulation library). Along with this guide is a [TodoMVC](http://todomvc.com/) [project](jquery).  
+This file is a style guide for the [JQuery](https://jquery.com/) framework (I prefer DOM manipulation library). Along with this guide is a [TodoMVC](http://todomvc.com/) [project](jquery) as an example of a JQuery project structure.  
 
 General
 --------
